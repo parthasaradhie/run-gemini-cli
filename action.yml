@@ -275,7 +275,7 @@ runs:
       id: 'gemini_run'
       shell: 'bash'
       run: |-
-        set -euo pipefail
+        set -exuo pipefail
 
         # Create a temporary directory for storing the output, and ensure it's
         # cleaned up later
@@ -301,7 +301,7 @@ runs:
           sleep 1
           echo "::: End Gemini CLI STDOUT :::"
         else
-          if ! gemini --yolo --prompt "${PROMPT}" --output-format json 2> "${TEMP_STDERR}" 1> "${TEMP_STDOUT}"; then
+          if ! gemini --yolo --prompt "${PROMPT}"; then
             FAILED=true
           fi
         fi
